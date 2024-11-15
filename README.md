@@ -91,8 +91,14 @@ This endpoints gives All umportant Data of App
 
 The Frontend app is in react and the pics of frontend app is
 
-![Picture Not available](<Screenshot (2).png>)
+### 1.Transctions Table
 
-![alt text](<Screenshot (3).png>)
+![Transctions Table](<Screenshot (2).png>)
 
-![alt text](<Screenshot (4).png>)
+### 2.Transctions Statistics
+
+![Transctions Statistics](<Screenshot (3).png>)
+
+### 1.Transactions Bar Char
+
+![Transactions Bar Char](<Screenshot (4).png>)

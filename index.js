@@ -91,7 +91,7 @@ const getProductsByMonth = async (
 
 app.get("/find", async (req, res) => {
   try {
-    const { month = "", search = "", page = 1, perPage = 10 } = req.query;
+    const { month = "March", search = "", page = 1, perPage = 10 } = req.query;
     const { products, totalProducts } = await getProductsByMonth(
       month,
       search,
@@ -179,7 +179,7 @@ const getCategoryCounts = (products) => {
 app.get("/statistics", async (req, res) => {
   try {
     const { month = "January" } = req.query;
-    const products = await getProductsByMonth(month);
+    const products = (await getProductsByMonth(month)).products;
 
     let stats = { TotalSale: 0.0, TotalItems: 0, notSale: 0 };
     products.forEach((product) => {
@@ -193,7 +193,7 @@ app.get("/statistics", async (req, res) => {
 
     res.status(200).send(stats);
   } catch (error) {
-    res.status(500).send("Error fetching statistics");
+    res.status(500).send("Error fetching statistics" + error);
   }
 });
 
@@ -201,7 +201,7 @@ app.get("/statistics", async (req, res) => {
 app.get("/bar_chart", async (req, res) => {
   try {
     const { month = "January" } = req.query;
-    const products = await getProductsByMonth(month);
+    const products = (await getProductsByMonth(month)).products;
 
     const priceRanges = getPriceRangeCounts(products);
     res.status(200).send(priceRanges);
@@ -214,7 +214,7 @@ app.get("/bar_chart", async (req, res) => {
 app.get("/pie_chart", async (req, res) => {
   try {
     const { month = "January" } = req.query;
-    const products = await getProductsByMonth(month);
+    const products = (await getProductsByMonth(month)).products ;
 
     const categoryJson = getCategoryCounts(products);
     res.status(200).send(categoryJson);
